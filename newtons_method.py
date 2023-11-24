@@ -24,4 +24,4 @@ if __name__ == '__main__':
     
     x = newtonsMethod(f, x0, n)
     print(f'Root of quintic: {x}')
-    print(f'Distance to L_1 from Earth: {x*R} km')
+    print(f'Distance to L_1 from Earth: {x * R} km')
