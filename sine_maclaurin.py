@@ -1,4 +1,4 @@
-from math import pi
+from math import pi, fmod
 
 def factorial_generator(numtype_ = int):
     value = numtype_(1)
@@ -25,8 +25,11 @@ def calculate_terms(monomials = 50):
 monomials = 50
 taylor = calculate_terms(monomials)
 
-x = 0.4
-y = taylor(x%(2*pi))
+x =0.4
+y = taylor(fmod(x, 2*pi))
 
 from math import sin
 print(f'Value: {y}, Exact error: {abs(sin(x) - y)}')
+
+# for i in range(10):
+#     print(f'{i = }: {taylor(i % (2*pi))}')
