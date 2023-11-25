@@ -27,7 +27,7 @@ monomials = 50
 taylor = calculate_terms(monomials)
 
 x = 0.4
-mp.dps = 100 # Presisjon
+mp.dps = 100  # Precision
 y = taylor(mp.fmod(mp.mpf(x), 2*mp.pi))
 
 from math import sin
