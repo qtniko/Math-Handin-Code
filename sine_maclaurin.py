@@ -1,4 +1,4 @@
-from math import pi, fmod
+from mpmath import mp
 
 def factorial_generator(numtype_ = int):
     value = numtype_(1)
@@ -16,7 +16,8 @@ def calculate_terms(monomials = 50):
         if n != 0:
             next(factorial)
             fac = next(factorial)
-        term = lambda x, n=n, fac=fac: ((-1)**n) * x**(2*n+1) / fac
+        term = lambda x, n=mp.mpf(n), fac=mp.mpf(fac): \
+            ((-1)**n) * x**(2*n+1) / fac
         terms.append(term)
     taylor = lambda x, terms=terms: sum([term(x) for term in terms])
     return taylor
@@ -25,11 +26,9 @@ def calculate_terms(monomials = 50):
 monomials = 50
 taylor = calculate_terms(monomials)
 
-x =0.4
-y = taylor(fmod(x, 2*pi))
+x = 0.4
+mp.dps = 100 # Presisjon
+y = taylor(mp.fmod(mp.mpf(x), 2*mp.pi))
 
 from math import sin
-print(f'Value: {y}, Exact error: {abs(sin(x) - y)}')
-
-# for i in range(10):
-#     print(f'{i = }: {taylor(i % (2*pi))}')
+print(f'Value: {y}\nExact error: {abs(sin(x) - y)}')
